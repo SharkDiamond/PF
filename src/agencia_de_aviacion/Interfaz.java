@@ -16,7 +16,7 @@ public class Interfaz extends javax.swing.JFrame {
      */
 
      Añadirvuelo a=new Añadirvuelo();
-    
+    //CONSTRUCTO
     public Interfaz() {
         initComponents();
         this.setVisible(true);
