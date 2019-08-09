@@ -1,0 +1,93 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package agencia_de_aviacion;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.function.Function;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author gabriel
+ */
+public class  Fuente {
+    
+    
+         public Connection s=null;
+    
+    protected void conectorBD(){
+    
+     
+        try {
+            
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            
+             s=DriverManager.getConnection("jdbc:mysql://localhost:3306/Vuelos","root","iveth2020");
+            
+        } 
+        
+        
+        catch (ClassNotFoundException ex) {
+            
+          System.out.println("NO SE PUDO UTILIZAR EL DRIVER");
+          
+        } catch (SQLException ex) {
+              Logger.getLogger(Fuente.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        
+        
+    }
+    
+    
+   Object sa;
+    
+  
+    public void Setencia(String Sentencia_sql, Object metodo){
+    
+    
+          try {
+              Statement m=s.createStatement();
+              
+              
+              
+              ResultSet a=m.executeQuery(Sentencia_sql);
+              
+              
+              while(a.next()){
+              
+         
+                  this.sa=metodo;
+                 
+              
+              }
+              
+              
+          } catch (SQLException ex) {
+              Logger.getLogger(Fuente.class.getName()).log(Level.SEVERE, null, ex);
+          }
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+    
+    
+    
+    
+

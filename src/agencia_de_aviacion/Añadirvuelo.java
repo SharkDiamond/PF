@@ -19,6 +19,7 @@ public class Añadirvuelo extends javax.swing.JPanel {
     public Añadirvuelo() {
         
         initComponents();
+        this.setAlignmentX(1000);
         
     }
 
