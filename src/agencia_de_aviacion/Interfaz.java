@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +22,8 @@ public class Interfaz extends javax.swing.JFrame {
 
  Fuente f=new Fuente();
  
+     private Statement estatuto;
+    private ResultSet resultado;
  public Connection s=null;
  
      Añadirvuelo a=new Añadirvuelo();
@@ -81,7 +85,7 @@ public class Interfaz extends javax.swing.JFrame {
         apellido2 = new javax.swing.JTextField();
         jSpinner1 = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaglobal = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -92,7 +96,6 @@ public class Interfaz extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -254,7 +257,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         trasfondo.add(panelregistrarpasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 298, 321));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaglobal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -265,7 +268,7 @@ public class Interfaz extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaglobal);
 
         javax.swing.GroupLayout principalLayout = new javax.swing.GroupLayout(principal);
         principal.setLayout(principalLayout);
@@ -345,6 +348,11 @@ public class Interfaz extends javax.swing.JFrame {
                 jMenuItem3MouseClicked(evt);
             }
         });
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
@@ -367,14 +375,6 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem5);
-
-        jMenuItem6.setText("Avion");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem6);
 
         jMenuBar1.add(jMenu4);
 
@@ -433,25 +433,28 @@ this.trasfondo.repaint();
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-   try {
-              Statement m=s.createStatement();
-              
-              
-              
-              ResultSet a=m.executeQuery("select * from Pasajeros");
-              
-              
-              while(a.next()){
-              
-         
-              
-              
-              }
-              
-              
-          } catch (SQLException ex) {
-              Logger.getLogger(Fuente.class.getName()).log(Level.SEVERE, null, ex);
-          }  
+    String [] titulos = { "Identificacion", "Nombre","Apellido","Id Vuelo"};
+        DefaultTableModel md = new DefaultTableModel(null,titulos);
+        String [] registro = new String[5];
+        
+        try {
+            Statement a1 = f.s.createStatement();
+            ResultSet r = a1.executeQuery("SELECT * FROM Pasajeros");
+            
+            while(r.next()){
+               registro[0] = r.getString("Identificacion");
+               registro[1] = r.getString("Nombre");
+                registro[2] = r.getString("Apellido");
+               registro[3] = r.getString("Fecha_De_Nacimiento");
+               registro[4] = r.getString("Id_Vuelo");
+               md.addRow(registro);
+            }
+            
+            this.tablaglobal.setModel(md);
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -462,25 +465,28 @@ this.trasfondo.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
- try {
-              Statement m=s.createStatement();
-              
-              
-              
-              ResultSet B=m.executeQuery("select * from Vuelos");
-              
-              
-              while(B.next()){
-              
-         
-              
-              
-              }
-              
-              
-          } catch (SQLException ex) {
-              Logger.getLogger(Fuente.class.getName()).log(Level.SEVERE, null, ex);
-          }          // TODO add your handling code here:
+   String [] titulos = { "Numero De Vuelo","Fecha De Vuelo","Origen","Destino"};
+        DefaultTableModel md = new DefaultTableModel(null,titulos);
+        String [] registro = new String[4];
+        
+        try {
+            Statement a1 = f.s.createStatement();
+            ResultSet r = a1.executeQuery("SELECT * FROM Vuelos_Avion");
+            
+            while(r.next()){
+               registro[0] = r.getString("Numero_Vuelo");
+               registro[1] = r.getString("Fecha_De_Vuelo");
+                registro[2] = r.getString("Origen_Areopuerto");
+               registro[3] = r.getString("Destino_Areopuerto");
+            
+               md.addRow(registro);
+            }
+            
+            this.tablaglobal.setModel(md);
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
@@ -506,55 +512,58 @@ this.trasfondo.repaint();
     }//GEN-LAST:event_jMenuItem3MouseClicked
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-    try {
-              Statement m=s.createStatement();
-              
-              
-              
-              ResultSet D=m.executeQuery("delete Pasajeros where Identificacion=");
-              
-              
-             
-              
-              
-          } catch (SQLException ex) {
-              Logger.getLogger(Fuente.class.getName()).log(Level.SEVERE, null, ex);
-          }       // TODO add your handling code here:
+ try {
+     
+             //id = Integer.parseInt(this.campoidasignatura.getText());
+               String Identificacion=JOptionPane.showInputDialog("Por favor introduzca la identificacion del pasajero "+"=");
+
+            estatuto = f.s.createStatement();
+            estatuto.executeUpdate("DELETE FROM Pasajeros where Identificacion="+Identificacion);
+            JOptionPane.showMessageDialog(this,"REGISTRO ELIMINADO EXITOSAMENTE");
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }      // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
 try {
-              Statement m=s.createStatement();
-              
-              
-              
-              ResultSet D=m.executeQuery("delete Vuelos where Numero_Vuelo=");
-              
-              
-             
-              
-              
-          } catch (SQLException ex) {
-              Logger.getLogger(Fuente.class.getName()).log(Level.SEVERE, null, ex);
-          }           // TODO add your handling code here:
+     
+             //id = Integer.parseInt(this.campoidasignatura.getText());
+               String Identificacion=JOptionPane.showInputDialog("Por favor introduzca el numero de vuelo"+"=");
+
+            estatuto = f.s.createStatement();
+            estatuto.executeUpdate("DELETE FROM  Vuelos_Avion where Numero_Vuelo="+Identificacion);
+            JOptionPane.showMessageDialog(this,"REGISTRO ELIMINADO EXITOSAMENTE");
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }            // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-try {
-              Statement m=s.createStatement();
-              
-              
-              
-              ResultSet D=m.executeQuery("delete Aviones where Matricula=");
-              
-              
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+ String [] titulos = { "Matricula","Nombre","Cantidad De Asientos"};
+        DefaultTableModel md = new DefaultTableModel(null,titulos);
+        String [] registro = new String[3];
+        
+        try {
+            Statement a1 = f.s.createStatement();
+            ResultSet r = a1.executeQuery("SELECT * FROM Aviones");
+            
+            while(r.next()){
+               registro[0] = r.getString("Maticula");
+               registro[1] = r.getString("Nombre");
+                registro[2] = r.getString("Cantidad_De_Asientos");
              
-              
-              
-          } catch (SQLException ex) {
-              Logger.getLogger(Fuente.class.getName()).log(Level.SEVERE, null, ex);
-          }           // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+            
+               md.addRow(registro);
+            }
+            
+            this.tablaglobal.setModel(md);
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -616,16 +625,15 @@ try {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JProgressBar jProgressBar3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nombre;
     private javax.swing.JPanel panelregistrarpasajero;
     private javax.swing.JPanel principal;
+    private javax.swing.JTable tablaglobal;
     private javax.swing.JPanel trasfondo;
     private javax.swing.JPanel vuelos;
     // End of variables declaration//GEN-END:variables
