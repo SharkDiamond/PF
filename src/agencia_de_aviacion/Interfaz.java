@@ -9,9 +9,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class Interfaz extends javax.swing.JFrame {
 
  Fuente f=new Fuente();
- 
+  java.util.Timer d=new java.util.Timer();
      private Statement estatuto;
     private ResultSet resultado;
  public Connection s=null;
@@ -35,26 +37,133 @@ public class Interfaz extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
          
+            
+        TimerTask j;
+         j = new TimerTask() {
+             
+             @Override
+             public void run() {
+               
+                 //Lo que se va a ejecutar
+                 cargartabla1();
+                   cargartabla2();
+                     cargartabla3();
+                 System.out.println("Se ejecuto");
+             }
+         };
+         d.schedule(j, 0, 20000);
+       
+        
+        
+        
         
     }
     
-    public void saludo(){
     
-    System.out.print("sdsdsds");
+    
+    private void cargartabla1(){
+    
+        
+        String [] titulos = { "Identificacion", "Nombre","Apellido","Id Vuelo"};
+        DefaultTableModel md = new DefaultTableModel(null,titulos);
+        String [] registro = new String[5];
+        
+        try {
+            Statement a1 = f.s.createStatement();
+            ResultSet r = a1.executeQuery("SELECT * FROM Pasajeros");
+            
+            while(r.next()){
+               registro[0] = r.getString("Identificacion");
+               registro[1] = r.getString("Nombre");
+                registro[2] = r.getString("Apellido");
+               registro[3] = r.getString("Fecha_De_Nacimiento");
+               registro[4] = r.getString("Id_Vuelo");
+               md.addRow(registro);
+            }
+            
+            tablaglobal.setModel(md);
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    
+    
     
     
     }
-
-    Object salu;
-
-     public void saludo(Object s){
     
-    this.salu=s;
+      private void cargartabla2(){
+    
+      String [] titulos = { "Numero De Vuelo","Fecha De Vuelo","Origen","Destino"};
+        DefaultTableModel md = new DefaultTableModel(null,titulos);
+        String [] registro = new String[4];
+        
+        try {
+            Statement a1 = f.s.createStatement();
+            ResultSet r = a1.executeQuery("SELECT * FROM Vuelos_Avion");
+            
+            while(r.next()){
+               registro[0] = r.getString("Numero_Vuelo");
+               registro[1] = r.getString("Fecha_De_Vuelo");
+                registro[2] = r.getString("Origen_Areopuerto");
+               registro[3] = r.getString("Destino_Areopuerto");
+            
+               md.addRow(registro);
+            }
+            
+            tablaglobal.setModel(md);
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    
+    
     }
-
+    
+      
+        private void cargartabla3(){
+    
+        
+        String [] titulos = { "Matricula","Nombre","Cantidad De Asientos"};
+        DefaultTableModel md = new DefaultTableModel(null,titulos);
+        String [] registro = new String[3];
+        
+        try {
+            Statement a1 = f.s.createStatement();
+            ResultSet r = a1.executeQuery("SELECT * FROM Aviones");
+            
+            while(r.next()){
+               registro[0] = r.getString("Maticula");
+               registro[1] = r.getString("Nombre");
+                registro[2] = r.getString("Cantidad_De_Asientos");
+             
+            
+               md.addRow(registro);
+            }
+            
+            tablaglobal.setModel(md);
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     
     
     
+    
+    }
+    
+      
+      
+    
+    
+    public void cargabarra(){
+    
+    
+  
+    
+    
+    
+    }
     
   
     @SuppressWarnings("unchecked")
@@ -82,10 +191,12 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        apellido2 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
+        numerovuelo = new javax.swing.JTextField();
+        fecha = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaglobal = new javax.swing.JTable();
+        barra = new javax.swing.JProgressBar();
+        tablaactual = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -248,12 +359,12 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel10.setText("Numero De Vuelo");
         panelregistrarpasajero.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 130, 23));
 
-        apellido2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        apellido2.setBorder(null);
-        panelregistrarpasajero.add(apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 210, 20));
+        numerovuelo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        numerovuelo.setBorder(null);
+        panelregistrarpasajero.add(numerovuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 210, 20));
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.YEAR));
-        panelregistrarpasajero.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, -1));
+        fecha.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1565565014673L), null, null, java.util.Calendar.YEAR));
+        panelregistrarpasajero.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, -1));
 
         trasfondo.add(panelregistrarpasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 298, 321));
 
@@ -270,35 +381,54 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaglobal);
 
+        barra.setBackground(new java.awt.Color(51, 51, 51));
+        barra.setForeground(new java.awt.Color(0, 102, 255));
+        barra.setBorder(null);
+        barra.setBorderPainted(false);
+
+        tablaactual.setForeground(new java.awt.Color(0, 102, 255));
+        tablaactual.setText("Tabla");
+
         javax.swing.GroupLayout principalLayout = new javax.swing.GroupLayout(principal);
         principal.setLayout(principalLayout);
         principalLayout.setHorizontalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(principalLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
                         .addComponent(trasfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))))
+                        .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(principalLayout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(principalLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tablaactual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(48, 48, 48))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
+                        .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 859, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))))
         );
         principalLayout.setVerticalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(principalLayout.createSequentialGroup()
-                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(principalLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(trasfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(principalLayout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tablaactual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addGap(18, 18, 18)
+                .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(51, 51, 51));
@@ -433,7 +563,26 @@ this.trasfondo.repaint();
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    String [] titulos = { "Identificacion", "Nombre","Apellido","Id Vuelo"};
+  
+      
+          Thread 
+     tiempo = new Thread(){
+         
+         @Override
+         public void run(){
+         
+         
+         int seg;
+         
+         for(seg=1;seg<=100;seg++){
+         
+         
+        barra.setValue(seg);
+         
+        if(seg==100){
+           tablaactual.setText("Pasajeros");
+          
+        String [] titulos = { "Identificacion", "Nombre","Apellido","Id Vuelo"};
         DefaultTableModel md = new DefaultTableModel(null,titulos);
         String [] registro = new String[5];
         
@@ -450,22 +599,88 @@ this.trasfondo.repaint();
                md.addRow(registro);
             }
             
-            this.tablaglobal.setModel(md);
+            tablaglobal.setModel(md);
         } catch (SQLException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        }
+        
+        
+        
+             try {
+                 Thread.sleep(13);
+                 
+                 
+                
+             } catch (InterruptedException ex) {
+                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+             }
+       
+         }
+          seg=0;
+                barra.setValue(seg);
+         }
+          
+     };
+    
+      tiempo.start();
+       
+        
+        
+        
+        
+        
+        
+        
  
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+try {
+         String fechaa=""+this.fecha.getValue();
+            estatuto = f.s.createStatement();
+            String dato1=this.identificacion.getText();
+         String Datos="(''"+", 'franco', 'angel', '03-11-99', '5');";
+            estatuto.executeUpdate("INSERT INTO pasajeros (Identificacion, Nombre, Apellido, Fecha_De_Nacimiento, Id_Vuelo) VALUES "+Datos);
+            JOptionPane.showMessageDialog(this,"DATOS REGISTRADOS EXITOSAMENTE");
+            this.cargartabla1();
       
+        } catch (SQLException ex) {
+            
+             JOptionPane.showMessageDialog(this,"LOS DATOS NO SE PUDIERON REGISTRAR");
+            
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }      
         
        
           // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-   String [] titulos = { "Numero De Vuelo","Fecha De Vuelo","Origen","Destino"};
+
+       
+          Thread 
+     tiempo = new Thread(){
+         
+         @Override
+         public void run(){
+         
+         
+         int seg;
+         
+         for(seg=1;seg<=100;seg++){
+         
+         
+        barra.setValue(seg);
+         
+        if(seg==100){
+        
+          
+          tablaactual.setText("Vuelos");
+       
+        String [] titulos = { "Numero De Vuelo","Fecha De Vuelo","Origen","Destino"};
         DefaultTableModel md = new DefaultTableModel(null,titulos);
         String [] registro = new String[4];
         
@@ -482,10 +697,39 @@ this.trasfondo.repaint();
                md.addRow(registro);
             }
             
-            this.tablaglobal.setModel(md);
+            tablaglobal.setModel(md);
         } catch (SQLException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
+        }
+        
+        
+        
+             try {
+                 Thread.sleep(13);
+                 
+                 
+                
+             } catch (InterruptedException ex) {
+                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+             }
+       
+         }
+          seg=0;
+                barra.setValue(seg);
+         }
+          
+     };
+    
+      tiempo.start();
+        
+        
+        
+        
+        
          // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -542,7 +786,29 @@ try {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
- String [] titulos = { "Matricula","Nombre","Cantidad De Asientos"};
+//this.cargabarra();
+        
+        
+          Thread 
+     tiempo = new Thread(){
+         
+         @Override
+         public void run(){
+         
+         
+         int seg;
+         
+         for(seg=1;seg<=100;seg++){
+         
+         
+        barra.setValue(seg);
+         
+        if(seg==100){
+        
+            tablaactual.setText("Aviones");
+       
+        
+        String [] titulos = { "Matricula","Nombre","Cantidad De Asientos"};
         DefaultTableModel md = new DefaultTableModel(null,titulos);
         String [] registro = new String[3];
         
@@ -559,10 +825,36 @@ try {
                md.addRow(registro);
             }
             
-            this.tablaglobal.setModel(md);
+            tablaglobal.setModel(md);
         } catch (SQLException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
+        }  
+        
+        
+        }
+        
+        
+        
+             try {
+                 Thread.sleep(13);
+                 
+                 
+                
+             } catch (InterruptedException ex) {
+                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+             }
+       
+         }
+          seg=0;
+                barra.setValue(seg);
+         }
+          
+     };
+    
+      tiempo.start();
+        
+       
+            // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
@@ -602,7 +894,8 @@ try {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido;
-    private javax.swing.JTextField apellido2;
+    private javax.swing.JProgressBar barra;
+    private javax.swing.JSpinner fecha;
     private javax.swing.JTextField identificacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -629,10 +922,11 @@ try {
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JProgressBar jProgressBar3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTextField numerovuelo;
     private javax.swing.JPanel panelregistrarpasajero;
     private javax.swing.JPanel principal;
+    private javax.swing.JLabel tablaactual;
     private javax.swing.JTable tablaglobal;
     private javax.swing.JPanel trasfondo;
     private javax.swing.JPanel vuelos;
