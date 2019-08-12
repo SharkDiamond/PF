@@ -15,7 +15,9 @@ public class Agencia_De_Aviacion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Interfaz inter=new Interfaz();
+        
+        
+        Interfaz inter=new Interfaz("sdsd");
         
       
     }

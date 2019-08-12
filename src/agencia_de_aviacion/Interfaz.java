@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Interfaz extends javax.swing.JFrame {
 
+    //Variables
  Fuente f=new Fuente();
   java.util.Timer d=new java.util.Timer();
      private Statement estatuto;
@@ -29,8 +30,9 @@ public class Interfaz extends javax.swing.JFrame {
  public Connection s=null;
  
      Añadirvuelo a=new Añadirvuelo();
-    //CONSTRUCTO
-    public Interfaz() {
+    
+//CONSTRUCTO
+    public Interfaz(String sd) {
         
        f.conectorBD();
         initComponents();
@@ -45,23 +47,26 @@ public class Interfaz extends javax.swing.JFrame {
              public void run() {
                
                  //Lo que se va a ejecutar
+                   tablaactual.setText("Aviones");
                  cargartabla1();
                    cargartabla2();
                      cargartabla3();
                  System.out.println("Se ejecuto");
              }
          };
-         d.schedule(j, 0, 20000);
+         d.schedule(j, 0, 30000);
        
         
         
         
         
     }
+    public Interfaz(int nada){
+    
+    }
     
     
-    
-    private void cargartabla1(){
+    public void cargartabla1(){
     
         
         String [] titulos = { "Identificacion", "Nombre","Apellido","Id Vuelo"};
@@ -92,7 +97,7 @@ public class Interfaz extends javax.swing.JFrame {
     
     }
     
-      private void cargartabla2(){
+      public void cargartabla2(){
     
       String [] titulos = { "Numero De Vuelo","Fecha De Vuelo","Origen","Destino"};
         DefaultTableModel md = new DefaultTableModel(null,titulos);
@@ -192,7 +197,7 @@ public class Interfaz extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         numerovuelo = new javax.swing.JTextField();
-        fecha = new javax.swing.JSpinner();
+        fecha = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaglobal = new javax.swing.JTable();
         barra = new javax.swing.JProgressBar();
@@ -363,8 +368,9 @@ public class Interfaz extends javax.swing.JFrame {
         numerovuelo.setBorder(null);
         panelregistrarpasajero.add(numerovuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 210, 20));
 
-        fecha.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1565565014673L), null, null, java.util.Calendar.YEAR));
-        panelregistrarpasajero.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, -1));
+        fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fecha.setBorder(null);
+        panelregistrarpasajero.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, 20));
 
         trasfondo.add(panelregistrarpasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 298, 321));
 
@@ -582,7 +588,7 @@ this.trasfondo.repaint();
         if(seg==100){
            tablaactual.setText("Pasajeros");
           
-        String [] titulos = { "Identificacion", "Nombre","Apellido","Id Vuelo"};
+        String [] titulos = { "Identificacion", "Nombre","Apellido","Fecha De Nacimiento","Id de Vuelo"};
         DefaultTableModel md = new DefaultTableModel(null,titulos);
         String [] registro = new String[5];
         
@@ -639,17 +645,25 @@ this.trasfondo.repaint();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 try {
-         String fechaa=""+this.fecha.getValue();
+         String fechaa=""+this.fecha.getText();
             estatuto = f.s.createStatement();
             String dato1=this.identificacion.getText();
-         String Datos="(''"+", 'franco', 'angel', '03-11-99', '5');";
-            estatuto.executeUpdate("INSERT INTO pasajeros (Identificacion, Nombre, Apellido, Fecha_De_Nacimiento, Id_Vuelo) VALUES "+Datos);
+            String dato2=this.nombre.getText();
+            String dato3=this.apellido.getText();
+//             String dato4=(String) this.fecha.getValue();
+            String dato5=this.numerovuelo.getText();
+           
+            
+         //String Datos="('"+"2323244"+"','"+"sdsdsd"+"','"+"sdsdsd"+"','"+"dffd"+"','"+"12wd"+"');";
+           //String Datoss="('identiifcacion, 'franco', 'angel', '03-11-99', '5');";
+           
+            estatuto.executeUpdate("INSERT INTO Pasajeros VALUES ('"+dato1+"','"+dato2+"','"+dato3+"','"+fechaa+"','"+dato5+"')");
             JOptionPane.showMessageDialog(this,"DATOS REGISTRADOS EXITOSAMENTE");
             this.cargartabla1();
       
         } catch (SQLException ex) {
             
-             JOptionPane.showMessageDialog(this,"LOS DATOS NO SE PUDIERON REGISTRAR");
+             JOptionPane.showMessageDialog(this,"LOS DATOS NO SE PUDIERON REGISTRAR verique que efectivamente esta ingresando los datos de manera correcta");
             
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }      
@@ -764,22 +778,27 @@ try {
             estatuto = f.s.createStatement();
             estatuto.executeUpdate("DELETE FROM Pasajeros where Identificacion="+Identificacion);
             JOptionPane.showMessageDialog(this,"REGISTRO ELIMINADO EXITOSAMENTE");
-          
+          this.cargartabla1();
         } catch (SQLException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }      // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-try {
+
+        
+        System.out.print("fdfsdfs");
+        
+        
+        try {
      
              //id = Integer.parseInt(this.campoidasignatura.getText());
                String Identificacion=JOptionPane.showInputDialog("Por favor introduzca el numero de vuelo"+"=");
 
             estatuto = f.s.createStatement();
-            estatuto.executeUpdate("DELETE FROM  Vuelos_Avion where Numero_Vuelo="+Identificacion);
+            estatuto.executeUpdate("DELETE FROM Vuelos_Avion where Numero_Vuelo="+"'"+Identificacion+"';");
             JOptionPane.showMessageDialog(this,"REGISTRO ELIMINADO EXITOSAMENTE");
-          
+          this.cargartabla2();
         } catch (SQLException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }            // TODO add your handling code here:
@@ -887,7 +906,7 @@ try {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interfaz().setVisible(true);
+                new Interfaz("sds").setVisible(true);
             }
         });
     }
@@ -895,7 +914,7 @@ try {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido;
     private javax.swing.JProgressBar barra;
-    private javax.swing.JSpinner fecha;
+    private javax.swing.JTextField fecha;
     private javax.swing.JTextField identificacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

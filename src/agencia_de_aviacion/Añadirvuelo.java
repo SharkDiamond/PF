@@ -5,6 +5,14 @@
  */
 package agencia_de_aviacion;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author gabriel
@@ -14,13 +22,21 @@ public class Añadirvuelo extends javax.swing.JPanel {
     /**
      * Creates new form Añadirvuelo
      */
+     Fuente f=new Fuente();
+  java.util.Timer d=new java.util.Timer();
+     private Statement estatuto;
+    private ResultSet resultado;
+ public Connection s=null;
+ 
+    
+    
     
     //CONSTRUCTOR
     public Añadirvuelo() {
         
         initComponents();
         this.setAlignmentX(1000);
-        
+            f.conectorBD();
     }
 
     /**
@@ -32,50 +48,109 @@ public class Añadirvuelo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox2 = new javax.swing.JComboBox();
-        jSpinner1 = new javax.swing.JSpinner();
+        origen = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jComboBox3 = new javax.swing.JComboBox();
+        fh = new javax.swing.JTextField();
+        destino = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        numerov = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 102, 255));
         setPreferredSize(new java.awt.Dimension(312, 340));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BLA", "BRM", "CBL", "CCS", "CUM", "VIG", "LFR", "LSP", "LRV", "MAR", "MUN", "MYC", "PMV", "PBL", "PHV", "PZO", "SFD", "SOM", "STD", "TUV", "VLN" }));
-        add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 147, 121, -1));
-
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1564604280000L), null, null, java.util.Calendar.WEEK_OF_MONTH));
-        add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 73, 176, 31));
+        origen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BLA", "BRM", "CBL", "CCS", "CUM", "VIG", "LFR", "LSP", "LRV", "MAR", "MUN", "MYC", "PMV", "PBL", "PHV", "PZO", "SFD", "SOM", "STD", "TUV", "VLN" }));
+        add(origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 121, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Fecha Y Hora Del Vuelo");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 36, 176, 19));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 176, 19));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Destino");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 122, 176, 19));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 176, 19));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Registrar");
         jButton1.setFocusable(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 262, -1, 40));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vuelo 1", "Vuelo 2", "Vuelo 3" }));
-        add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 203, 121, -1));
+        fh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fhActionPerformed(evt);
+            }
+        });
+        add(fh, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 160, 30));
+
+        destino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BLA", "BRM", "CBL", "CCS", "CUM", "VIG", "LFR", "LSP", "LRV", "MAR", "MUN", "MYC", "PMV", "PBL", "PHV", "PZO", "SFD", "SOM", "STD", "TUV", "VLN" }));
+        add(destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 121, -1));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Origen");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Numero De Vuelo");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 140, -1));
+
+        numerov.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        add(numerov, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 160, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void fhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fhActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      try {
+          
+          Interfaz nd=new Interfaz(1);
+          
+        
+            estatuto = f.s.createStatement();
+            String dato1=this.numerov.getText();
+            String dato2=fh.getText();
+            String dato3=(String) this.origen.getSelectedItem();
+//             String dato4=(String) this.fecha.getValue();
+         String dato4=(String) this.destino.getSelectedItem();
+            
+         //String Datos="('"+"2323244"+"','"+"sdsdsd"+"','"+"sdsdsd"+"','"+"dffd"+"','"+"12wd"+"');";
+           //String Datoss="('identiifcacion, 'franco', 'angel', '03-11-99', '5');";
+           
+            estatuto.executeUpdate("INSERT INTO Vuelos_Avion VALUES ('"+dato1+"','"+dato2+"','"+dato3+"','"+dato4+"')");
+            JOptionPane.showMessageDialog(this,"DATOS REGISTRADOS EXITOSAMENTE");
+            nd.cargartabla2();
+      
+        } catch (SQLException ex) {
+            
+             JOptionPane.showMessageDialog(this,"LOS DATOS NO SE PUDIERON REGISTRAR verique que efectivamente esta ingresando los datos de manera correcta");
+            
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }      
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JComboBox destino;
+    public javax.swing.JTextField fh;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField numerov;
+    public javax.swing.JComboBox origen;
     // End of variables declaration//GEN-END:variables
 }
