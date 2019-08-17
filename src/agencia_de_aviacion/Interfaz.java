@@ -28,9 +28,9 @@ public class Interfaz extends javax.swing.JFrame {
      private Statement estatuto;
     private ResultSet resultado;
  public Connection s=null;
- 
+ ActulizarPasajero pasajero=new ActulizarPasajero();
      Añadirvuelo a=new Añadirvuelo();
-    
+    ActualizarVuelo vuelo=new ActualizarVuelo();
 //CONSTRUCTO
     public Interfaz(String sd) {
         
@@ -69,7 +69,7 @@ public class Interfaz extends javax.swing.JFrame {
     public void cargartabla1(){
     
         
-        String [] titulos = { "Identificacion", "Nombre","Apellido","Id Vuelo"};
+        String [] titulos = { "Identificacion", "Nombre","Apellido","Fecha De Nacimiento","Numero De Vuelo"};
         DefaultTableModel md = new DefaultTableModel(null,titulos);
         String [] registro = new String[5];
         
@@ -176,15 +176,6 @@ public class Interfaz extends javax.swing.JFrame {
     private void initComponents() {
 
         principal = new javax.swing.JPanel();
-        vuelos = new javax.swing.JPanel();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jProgressBar2 = new javax.swing.JProgressBar();
-        jProgressBar3 = new javax.swing.JProgressBar();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         trasfondo = new javax.swing.JPanel();
         panelregistrarpasajero = new javax.swing.JPanel();
         identificacion = new javax.swing.JTextField();
@@ -194,7 +185,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bpasajero = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         numerovuelo = new javax.swing.JTextField();
         fecha = new javax.swing.JTextField();
@@ -209,106 +200,18 @@ public class Interfaz extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         principal.setBackground(new java.awt.Color(51, 51, 51));
-
-        vuelos.setBackground(new java.awt.Color(0, 102, 255));
-
-        jProgressBar1.setBackground(new java.awt.Color(51, 51, 51));
-        jProgressBar1.setForeground(new java.awt.Color(51, 153, 255));
-        jProgressBar1.setMaximum(20);
-        jProgressBar1.setToolTipText("");
-        jProgressBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-
-        jProgressBar2.setBackground(new java.awt.Color(51, 51, 51));
-        jProgressBar2.setForeground(new java.awt.Color(51, 153, 255));
-        jProgressBar2.setMaximum(20);
-        jProgressBar2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-
-        jProgressBar3.setBackground(new java.awt.Color(51, 51, 51));
-        jProgressBar3.setForeground(new java.awt.Color(51, 153, 255));
-        jProgressBar3.setMaximum(20);
-        jProgressBar3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Asientos Disponibles");
-
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("VUELO1");
-
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("VUELO2");
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("VUELO3");
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Vuelos Del Dia");
-
-        javax.swing.GroupLayout vuelosLayout = new javax.swing.GroupLayout(vuelos);
-        vuelos.setLayout(vuelosLayout);
-        vuelosLayout.setHorizontalGroup(
-            vuelosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(vuelosLayout.createSequentialGroup()
-                .addGroup(vuelosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(vuelosLayout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(vuelosLayout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(jLabel2))
-                    .addGroup(vuelosLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(vuelosLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(vuelosLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
-        vuelosLayout.setVerticalGroup(
-            vuelosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(vuelosLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addGroup(vuelosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(vuelosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(vuelosLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(vuelosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(vuelosLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        jProgressBar1.getAccessibleContext().setAccessibleName("");
 
         trasfondo.setBackground(new java.awt.Color(51, 51, 51));
         trasfondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -348,16 +251,16 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel9.setText("Fecha De Nacimiento");
         panelregistrarpasajero.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 150, 23));
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Registrar");
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bpasajero.setBackground(new java.awt.Color(51, 51, 51));
+        bpasajero.setForeground(new java.awt.Color(255, 255, 255));
+        bpasajero.setText("Registrar");
+        bpasajero.setFocusable(false);
+        bpasajero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bpasajeroActionPerformed(evt);
             }
         });
-        panelregistrarpasajero.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, 40));
+        panelregistrarpasajero.add(bpasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, 40));
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -372,7 +275,7 @@ public class Interfaz extends javax.swing.JFrame {
         fecha.setBorder(null);
         panelregistrarpasajero.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, 20));
 
-        trasfondo.add(panelregistrarpasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 298, 321));
+        trasfondo.add(panelregistrarpasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 298, 310));
 
         tablaglobal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -403,36 +306,28 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
-                        .addComponent(trasfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(principalLayout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(principalLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tablaactual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(48, 48, 48))
+                        .addComponent(tablaactual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(444, 444, 444))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
                         .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 859, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28))))
+            .addGroup(principalLayout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(trasfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         principalLayout.setVerticalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(principalLayout.createSequentialGroup()
-                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(trasfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(tablaactual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(trasfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tablaactual, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
@@ -491,6 +386,22 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem3);
 
+        jMenuItem6.setText("Areopuertos");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem6);
+
+        jMenuItem7.setText("Ciudades");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem7);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setForeground(new java.awt.Color(0, 153, 204));
@@ -514,6 +425,27 @@ public class Interfaz extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setForeground(new java.awt.Color(0, 204, 255));
+        jMenu5.setText("Actualizar");
+
+        jMenuItem8.setText("Pasajero");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem8);
+
+        jMenuItem9.setText("Vuelo");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu5);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -533,9 +465,9 @@ public class Interfaz extends javax.swing.JFrame {
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
   
    
-         
+          pasajero.setVisible(false);
         a.setVisible(false);
-        
+        vuelo.setVisible(false);
         this.trasfondo.repaint();
         
         
@@ -549,10 +481,10 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
 
-        
+        pasajero.setVisible(false);
    
         this.panelregistrarpasajero.setVisible(false);   
-       
+      
         
           a.setSize(298,321);
 a.setVisible(true);
@@ -643,8 +575,13 @@ this.trasfondo.repaint();
  
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-try {
+    private void bpasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpasajeroActionPerformed
+
+        
+        
+        
+        
+        try {
          String fechaa=""+this.fecha.getText();
             estatuto = f.s.createStatement();
             String dato1=this.identificacion.getText();
@@ -670,7 +607,7 @@ try {
         
        
           // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bpasajeroActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
 
@@ -876,6 +813,176 @@ try {
             // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+      
+          Thread 
+     tiempo = new Thread(){
+         
+         @Override
+         public void run(){
+         
+         
+         int seg;
+         
+         for(seg=1;seg<=100;seg++){
+         
+         
+        barra.setValue(seg);
+         
+        if(seg==100){
+        
+            tablaactual.setText("Aviones");
+       
+        
+        String [] titulos = { "IATA","Nombre","Id Ciudad"};
+        DefaultTableModel md = new DefaultTableModel(null,titulos);
+        String [] registro = new String[3];
+        
+        try {
+            Statement a1 = f.s.createStatement();
+            ResultSet r = a1.executeQuery("SELECT * FROM Areopuertos");
+            
+            while(r.next()){
+               registro[0] = r.getString("IATA");
+               registro[1] = r.getString("Nombre");
+                registro[2] = r.getString("Id_Ciudad");
+             
+            
+               md.addRow(registro);
+            }
+            
+            tablaglobal.setModel(md);
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+        
+        
+        
+             try {
+                 Thread.sleep(13);
+                 
+                 
+                
+             } catch (InterruptedException ex) {
+                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+             }
+       
+         }
+          seg=0;
+                barra.setValue(seg);
+         }
+          
+     };
+    
+      tiempo.start();
+         
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+
+          Thread 
+     tiempo = new Thread(){
+         
+         @Override
+         public void run(){
+         
+         
+         int seg;
+         
+         for(seg=1;seg<=100;seg++){
+         
+         
+        barra.setValue(seg);
+         
+        if(seg==100){
+        
+            tablaactual.setText("Aviones");
+       
+        
+        String [] titulos = { "Id","Ciudad"};
+        DefaultTableModel md = new DefaultTableModel(null,titulos);
+        String [] registro = new String[2];
+        
+        try {
+            Statement a1 = f.s.createStatement();
+            ResultSet r = a1.executeQuery("SELECT * FROM Ciudad");
+            
+            while(r.next()){
+               registro[0] = r.getString("Id");
+               registro[1] = r.getString("Ciudad");
+             
+            
+               md.addRow(registro);
+            }
+            
+            tablaglobal.setModel(md);
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+        
+        
+        
+             try {
+                 Thread.sleep(13);
+                 
+                 
+                
+             } catch (InterruptedException ex) {
+                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+             }
+       
+         }
+          seg=0;
+                barra.setValue(seg);
+         }
+          
+     };
+    
+      tiempo.start();
+                // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+
+   
+   a.setVisible(false);
+        this.panelregistrarpasajero.setVisible(false);   
+       vuelo.setVisible(false);
+        
+          pasajero.setSize(298,321);
+pasajero.setVisible(true);
+        
+        this.trasfondo.add(pasajero);
+        
+        
+      
+this.trasfondo.repaint();
+
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+     
+   a.setVisible(false);
+        this.panelregistrarpasajero.setVisible(false);   
+       pasajero.setVisible(false);
+        
+          vuelo.setSize(298,321);
+vuelo.setVisible(true);
+        
+        this.trasfondo.add(vuelo);
+        
+        
+      
+this.trasfondo.repaint();
+   // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -914,15 +1021,10 @@ try {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido;
     private javax.swing.JProgressBar barra;
+    private javax.swing.JButton bpasajero;
     private javax.swing.JTextField fecha;
     private javax.swing.JTextField identificacion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -931,15 +1033,17 @@ try {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JProgressBar jProgressBar2;
-    private javax.swing.JProgressBar jProgressBar3;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField numerovuelo;
@@ -948,6 +1052,5 @@ try {
     private javax.swing.JLabel tablaactual;
     private javax.swing.JTable tablaglobal;
     private javax.swing.JPanel trasfondo;
-    private javax.swing.JPanel vuelos;
     // End of variables declaration//GEN-END:variables
 }

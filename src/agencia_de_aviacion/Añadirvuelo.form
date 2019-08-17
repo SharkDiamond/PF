@@ -29,31 +29,35 @@
     <Component class="javax.swing.JComboBox" name="origen">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="21">
+          <StringArray count="22">
             <StringItem index="0" value="BLA"/>
             <StringItem index="1" value="BRM"/>
-            <StringItem index="2" value="CBL"/>
-            <StringItem index="3" value="CCS"/>
-            <StringItem index="4" value="CUM"/>
-            <StringItem index="5" value="VIG"/>
-            <StringItem index="6" value="LFR"/>
-            <StringItem index="7" value="LSP"/>
-            <StringItem index="8" value="LRV"/>
-            <StringItem index="9" value="MAR"/>
-            <StringItem index="10" value="MUN"/>
-            <StringItem index="11" value="MYC"/>
-            <StringItem index="12" value="PMV"/>
-            <StringItem index="13" value="PBL"/>
-            <StringItem index="14" value="PHV"/>
-            <StringItem index="15" value="PZO"/>
-            <StringItem index="16" value="SFD"/>
-            <StringItem index="17" value="SOM"/>
-            <StringItem index="18" value="STD"/>
-            <StringItem index="19" value="TUV"/>
-            <StringItem index="20" value="VLN"/>
+            <StringItem index="2" value="BNS"/>
+            <StringItem index="3" value="CBL"/>
+            <StringItem index="4" value="CCS"/>
+            <StringItem index="5" value="CUM"/>
+            <StringItem index="6" value="VIG"/>
+            <StringItem index="7" value="LFR"/>
+            <StringItem index="8" value="LSP"/>
+            <StringItem index="9" value="LRV"/>
+            <StringItem index="10" value="MAR"/>
+            <StringItem index="11" value="MUN"/>
+            <StringItem index="12" value="MYC"/>
+            <StringItem index="13" value="PMV"/>
+            <StringItem index="14" value="PBL"/>
+            <StringItem index="15" value="PHV"/>
+            <StringItem index="16" value="PZO"/>
+            <StringItem index="17" value="SFD"/>
+            <StringItem index="18" value="SOM"/>
+            <StringItem index="19" value="STD"/>
+            <StringItem index="20" value="TUV"/>
+            <StringItem index="21" value="VLN"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="origenActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -127,28 +131,29 @@
     <Component class="javax.swing.JComboBox" name="destino">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="21">
+          <StringArray count="22">
             <StringItem index="0" value="BLA"/>
             <StringItem index="1" value="BRM"/>
-            <StringItem index="2" value="CBL"/>
-            <StringItem index="3" value="CCS"/>
-            <StringItem index="4" value="CUM"/>
-            <StringItem index="5" value="VIG"/>
-            <StringItem index="6" value="LFR"/>
-            <StringItem index="7" value="LSP"/>
-            <StringItem index="8" value="LRV"/>
-            <StringItem index="9" value="MAR"/>
-            <StringItem index="10" value="MUN"/>
-            <StringItem index="11" value="MYC"/>
-            <StringItem index="12" value="PMV"/>
-            <StringItem index="13" value="PBL"/>
-            <StringItem index="14" value="PHV"/>
-            <StringItem index="15" value="PZO"/>
-            <StringItem index="16" value="SFD"/>
-            <StringItem index="17" value="SOM"/>
-            <StringItem index="18" value="STD"/>
-            <StringItem index="19" value="TUV"/>
-            <StringItem index="20" value="VLN"/>
+            <StringItem index="2" value="BNS"/>
+            <StringItem index="3" value="CBL"/>
+            <StringItem index="4" value="CCS"/>
+            <StringItem index="5" value="CUM"/>
+            <StringItem index="6" value="VIG"/>
+            <StringItem index="7" value="LFR"/>
+            <StringItem index="8" value="LSP"/>
+            <StringItem index="9" value="LRV"/>
+            <StringItem index="10" value="MAR"/>
+            <StringItem index="11" value="MUN"/>
+            <StringItem index="12" value="MYC"/>
+            <StringItem index="13" value="PMV"/>
+            <StringItem index="14" value="PBL"/>
+            <StringItem index="15" value="PHV"/>
+            <StringItem index="16" value="PZO"/>
+            <StringItem index="17" value="SFD"/>
+            <StringItem index="18" value="SOM"/>
+            <StringItem index="19" value="STD"/>
+            <StringItem index="20" value="TUV"/>
+            <StringItem index="21" value="VLN"/>
           </StringArray>
         </Property>
       </Properties>
@@ -176,6 +181,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Numero De Vuelo"/>
       </Properties>

@@ -62,7 +62,12 @@ public class Añadirvuelo extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(312, 340));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        origen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BLA", "BRM", "CBL", "CCS", "CUM", "VIG", "LFR", "LSP", "LRV", "MAR", "MUN", "MYC", "PMV", "PBL", "PHV", "PZO", "SFD", "SOM", "STD", "TUV", "VLN" }));
+        origen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BLA", "BRM", "BNS", "CBL", "CCS", "CUM", "VIG", "LFR", "LSP", "LRV", "MAR", "MUN", "MYC", "PMV", "PBL", "PHV", "PZO", "SFD", "SOM", "STD", "TUV", "VLN" }));
+        origen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                origenActionPerformed(evt);
+            }
+        });
         add(origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 121, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -93,13 +98,14 @@ public class Añadirvuelo extends javax.swing.JPanel {
         });
         add(fh, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 160, 30));
 
-        destino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BLA", "BRM", "CBL", "CCS", "CUM", "VIG", "LFR", "LSP", "LRV", "MAR", "MUN", "MYC", "PMV", "PBL", "PHV", "PZO", "SFD", "SOM", "STD", "TUV", "VLN" }));
+        destino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BLA", "BRM", "BNS", "CBL", "CCS", "CUM", "VIG", "LFR", "LSP", "LRV", "MAR", "MUN", "MYC", "PMV", "PBL", "PHV", "PZO", "SFD", "SOM", "STD", "TUV", "VLN" }));
         add(destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 121, -1));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Origen");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Numero De Vuelo");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 140, -1));
@@ -140,6 +146,10 @@ public class Añadirvuelo extends javax.swing.JPanel {
         }      
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void origenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_origenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_origenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
