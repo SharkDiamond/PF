@@ -31,7 +31,7 @@ public class  Fuente {
             
             Class.forName("com.mysql.jdbc.Driver");
             
-             s=DriverManager.getConnection("jdbc:mysql://localhost:3306/Vuelos","root","iveth2020");
+             s=DriverManager.getConnection("jdbc:mysql://localhost:3306/Vuelos","root","");
             
         } 
        

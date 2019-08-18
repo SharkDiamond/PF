@@ -69,6 +69,8 @@ public class Añadirvuelo extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         hora = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
+        minutos = new javax.swing.JSpinner();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 102, 255));
         setPreferredSize(new java.awt.Dimension(312, 340));
@@ -80,17 +82,17 @@ public class Añadirvuelo extends javax.swing.JPanel {
                 origenActionPerformed(evt);
             }
         });
-        add(origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 121, -1));
+        add(origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 121, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Fecha Y Hora Del Vuelo");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 176, 19));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 176, 19));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Destino");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 176, 19));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 176, 19));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,46 +103,53 @@ public class Añadirvuelo extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 262, -1, 40));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, 40));
 
         destino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BLA", "BRM", "BNS", "CBL", "CCS", "CUM", "VIG", "LFR", "LSP", "LRV", "MAR", "MUN", "MYC", "PMV", "PBL", "PHV", "PZO", "SFD", "SOM", "STD", "TUV", "VLN" }));
-        add(destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 121, -1));
+        add(destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 121, -1));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Origen");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Numero De Vuelo");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 140, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 140, -1));
 
         numerov.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        add(numerov, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 160, 30));
+        add(numerov, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 160, 30));
 
         año.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(2019), Integer.valueOf(2019), null, Integer.valueOf(1)));
-        add(año, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 70, -1));
+        add(año, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 70, -1));
 
         mes.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
-        add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
+        add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
 
         dia.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-        add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
+        add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
 
         jLabel5.setText("Año");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 20));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, 20));
 
         jLabel6.setText("Mes");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, 20));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, 20));
 
         jLabel7.setText("Dia");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, 20));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, 20));
 
         hora.setModel(new javax.swing.SpinnerNumberModel(1, 1, 24, 1));
-        add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
+        add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 50, -1));
 
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Hora");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, 20));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 50, 20));
+
+        minutos.setModel(new javax.swing.SpinnerNumberModel(1, 1, 60, 1));
+        add(minutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, -1));
+
+        jLabel9.setText("Minutos");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -152,7 +161,7 @@ public class Añadirvuelo extends javax.swing.JPanel {
         
             estatuto = f.s.createStatement();
             String dato1=this.numerov.getText();
-            String dato2=""+this.año.getValue()+"-"+this.mes.getValue()+"-"+this.dia.getValue()+"/"+this.hora.getValue();
+            String dato2=""+this.año.getValue()+"-"+this.mes.getValue()+"-"+this.dia.getValue()+"/"+this.hora.getValue()+":"+this.minutos.getValue();
             String dato3=(String) this.origen.getSelectedItem();
 //             String dato4=(String) this.fecha.getValue();
          String dato4=(String) this.destino.getSelectedItem();
@@ -194,7 +203,9 @@ public class Añadirvuelo extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner mes;
+    private javax.swing.JSpinner minutos;
     private javax.swing.JTextField numerov;
     public javax.swing.JComboBox origen;
     // End of variables declaration//GEN-END:variables
