@@ -28,9 +28,9 @@ public class Interfaz extends javax.swing.JFrame {
      private Statement estatuto;
     private ResultSet resultado;
  public Connection s=null;
- ActulizarPasajero pasajero=new ActulizarPasajero();
+ 
      Añadirvuelo a=new Añadirvuelo();
-    ActualizarVuelo vuelo=new ActualizarVuelo();
+    
 //CONSTRUCTO
     public Interfaz(String sd) {
         
@@ -465,9 +465,9 @@ public class Interfaz extends javax.swing.JFrame {
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
   
    
-          pasajero.setVisible(false);
+          
         a.setVisible(false);
-        vuelo.setVisible(false);
+        
         this.trasfondo.repaint();
         
         
@@ -481,7 +481,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
 
-        pasajero.setVisible(false);
+     
    
         this.panelregistrarpasajero.setVisible(false);   
       
@@ -949,37 +949,122 @@ this.trasfondo.repaint();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-
+ try {
+           
+            
+             //falta mejorarlo pero ya se  tiene una estructura
+                
+                         
+                      String opciones[]={"Nombre","Apellido","Numero De Vuelo","Fecha De Nacimiento"};
+           
+ String t=(String) JOptionPane.showInputDialog(null, "Por favor seleccione el campo que quiere actualizar del registro:"+this.identificacion.getText(), "Actualizar", JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
    
-   a.setVisible(false);
-        this.panelregistrarpasajero.setVisible(false);   
-       vuelo.setVisible(false);
-        
-          pasajero.setSize(298,321);
-pasajero.setVisible(true);
-        
-        this.trasfondo.add(pasajero);
-        
-        
-      
-this.trasfondo.repaint();
-
+                         
+                         
+                         if(t.equals(JOptionPane.CANCEL_OPTION)){
+                         
+                         }
+                         
+                         else{
+                         if(t.equals(opciones[0])){
+                                 estatuto = f.s.createStatement();
+              estatuto.executeUpdate("UPDATE Pasajeros SET  NOmbre = '"+this.nombre.getText()+"' WHERE id_asignatura = "+"s");
+            JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
+         
+                         }
+                  
+                         
+                              if(t.equals(opciones[1])){
+                                 estatuto = f.s.createStatement();
+              estatuto.executeUpdate("UPDATE Pasajeros SET  id_carrera = '"+this.apellido.getText()+"' WHERE id_asignatura = "+"");
+            JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
+           
+                         
+                         }
+                         
+                         
+                                if(t.equals(opciones[2])){
+                                 estatuto = f.s.createStatement();
+              estatuto.executeUpdate("UPDATE Pasajeros SET  Id_Vuelo = '"+this.numerovuelo.getText()+"' WHERE id_asignatura = "+"");
+            JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
+         
+                         
+                         }
+                         
+                                       if(t.equals(opciones[3])){
+                                 estatuto = f.s.createStatement();
+              estatuto.executeUpdate("UPDATE asignatura SET  unidad_credito = '"+this.numerovuelo.getText()+"' WHERE id_asignatura = "+"");
+            JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
+         
+                         
+                         }
+                          
+                                 
+                                 
+                         
+                         }
+             
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+   
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-     
-   a.setVisible(false);
-        this.panelregistrarpasajero.setVisible(false);   
-       pasajero.setVisible(false);
-        
-          vuelo.setSize(298,321);
-vuelo.setVisible(true);
-        
-        this.trasfondo.add(vuelo);
-        
-        
-      
-this.trasfondo.repaint();
+try {
+           
+            
+             //falta mejorarlo pero ya se  tiene una estructura
+                
+                         
+                      String opciones[]={"Fecha y Hora","Origen","Destino"};
+           
+ String t=(String) JOptionPane.showInputDialog(null, "Por favor seleccione el campo que quiere actualizar del registro:"+this.identificacion.getText(), "Actualizar", JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
+   
+                         
+                         
+                         if(t.equals(JOptionPane.CANCEL_OPTION)){
+                         
+                         }
+                         
+                         else{
+                         if(t.equals(opciones[0])){
+                                 estatuto = f.s.createStatement();
+              estatuto.executeUpdate("UPDATE Pasajeros SET  NOmbre = '"+this.nombre.getText()+"' WHERE id_asignatura = "+"s");
+            JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
+         
+                         }
+                  
+                         
+                              if(t.equals(opciones[1])){
+                                 estatuto = f.s.createStatement();
+              estatuto.executeUpdate("UPDATE Pasajeros SET  id_carrera = '"+this.apellido.getText()+"' WHERE id_asignatura = "+"");
+            JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
+           
+                         
+                         }
+                         
+                         
+                                if(t.equals(opciones[2])){
+                                 estatuto = f.s.createStatement();
+              estatuto.executeUpdate("UPDATE Pasajeros SET  Id_Vuelo = '"+this.numerovuelo.getText()+"' WHERE id_asignatura = "+"");
+            JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
+         
+                         
+                         }
+                         
+                              
+                                 
+                                 
+                         
+                         }
+             
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }         
+
    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
