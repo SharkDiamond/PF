@@ -188,7 +188,12 @@ public class Interfaz extends javax.swing.JFrame {
         bpasajero = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         numerovuelo = new javax.swing.JTextField();
-        fecha = new javax.swing.JTextField();
+        año = new javax.swing.JSpinner();
+        mes = new javax.swing.JSpinner();
+        dia = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaglobal = new javax.swing.JTable();
         barra = new javax.swing.JProgressBar();
@@ -221,35 +226,35 @@ public class Interfaz extends javax.swing.JFrame {
 
         identificacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         identificacion.setBorder(null);
-        panelregistrarpasajero.add(identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 210, 20));
+        panelregistrarpasajero.add(identificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 210, 20));
 
         nombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         nombre.setBorder(null);
-        panelregistrarpasajero.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 210, 20));
+        panelregistrarpasajero.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 210, 20));
 
         apellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         apellido.setBorder(null);
-        panelregistrarpasajero.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 210, 20));
+        panelregistrarpasajero.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 210, 20));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Identificacion");
-        panelregistrarpasajero.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 120, 23));
+        panelregistrarpasajero.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 120, 23));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Nombre");
-        panelregistrarpasajero.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 80, 20));
+        panelregistrarpasajero.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 80, 20));
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Apellido");
-        panelregistrarpasajero.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 80, 23));
+        panelregistrarpasajero.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 80, 23));
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Fecha De Nacimiento");
-        panelregistrarpasajero.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 150, 23));
+        panelregistrarpasajero.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 150, 20));
 
         bpasajero.setBackground(new java.awt.Color(51, 51, 51));
         bpasajero.setForeground(new java.awt.Color(255, 255, 255));
@@ -265,15 +270,29 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Numero De Vuelo");
-        panelregistrarpasajero.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 130, 23));
+        panelregistrarpasajero.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 130, 23));
 
         numerovuelo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         numerovuelo.setBorder(null);
-        panelregistrarpasajero.add(numerovuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 210, 20));
+        panelregistrarpasajero.add(numerovuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 210, 20));
 
-        fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        fecha.setBorder(null);
-        panelregistrarpasajero.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 210, 20));
+        año.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1930), null, null, Integer.valueOf(1)));
+        panelregistrarpasajero.add(año, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 63, 20));
+
+        mes.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
+        panelregistrarpasajero.add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 64, -1));
+
+        dia.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+        panelregistrarpasajero.add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 64, -1));
+
+        jLabel1.setText("Año");
+        panelregistrarpasajero.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+
+        jLabel2.setText("Mes");
+        panelregistrarpasajero.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
+
+        jLabel3.setText("Dia");
+        panelregistrarpasajero.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
 
         trasfondo.add(panelregistrarpasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 298, 310));
 
@@ -316,7 +335,7 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(principalLayout.createSequentialGroup()
                 .addGap(270, 270, 270)
                 .addComponent(trasfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         principalLayout.setVerticalGroup(
             principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -582,18 +601,16 @@ this.trasfondo.repaint();
         
         
         try {
-         String fechaa=""+this.fecha.getText();
+         String fechaa=""+this.año.getValue()+"-"+this.mes.getValue()+"-"+this.dia.getValue();
             estatuto = f.s.createStatement();
             String dato1=this.identificacion.getText();
             String dato2=this.nombre.getText();
             String dato3=this.apellido.getText();
-//             String dato4=(String) this.fecha.getValue();
+
             String dato5=this.numerovuelo.getText();
            
             
-         //String Datos="('"+"2323244"+"','"+"sdsdsd"+"','"+"sdsdsd"+"','"+"dffd"+"','"+"12wd"+"');";
-           //String Datoss="('identiifcacion, 'franco', 'angel', '03-11-99', '5');";
-           
+        
             estatuto.executeUpdate("INSERT INTO Pasajeros VALUES ('"+dato1+"','"+dato2+"','"+dato3+"','"+fechaa+"','"+dato5+"')");
             JOptionPane.showMessageDialog(this,"DATOS REGISTRADOS EXITOSAMENTE");
             this.cargartabla1();
@@ -952,15 +969,15 @@ this.trasfondo.repaint();
  try {
            
             
-             //falta mejorarlo pero ya se  tiene una estructura
-                
+            String entrada;
+     entrada = JOptionPane.showInputDialog(null,"Por favor introduzca la identificacion del pasajero al que le quiere editar los datos",JOptionPane.MESSAGE_PROPERTY);
                          
                       String opciones[]={"Nombre","Apellido","Numero De Vuelo","Fecha De Nacimiento"};
            
- String t=(String) JOptionPane.showInputDialog(null, "Por favor seleccione el campo que quiere actualizar del registro:"+this.identificacion.getText(), "Actualizar", JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
+                    
+ String t=(String) JOptionPane.showInputDialog(null, "Por favor seleccione el campo que quiere actualizar:", "Actualizar", JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
    
-                         
-                         
+            
                          if(t.equals(JOptionPane.CANCEL_OPTION)){
                          
                          }
@@ -968,34 +985,52 @@ this.trasfondo.repaint();
                          else{
                          if(t.equals(opciones[0])){
                                  estatuto = f.s.createStatement();
-              estatuto.executeUpdate("UPDATE Pasajeros SET  NOmbre = '"+this.nombre.getText()+"' WHERE id_asignatura = "+"s");
+                                 
+                                             
+ String nuevo=JOptionPane.showInputDialog(null, "Por favor introduzca el nuevo dato", JOptionPane.MESSAGE_PROPERTY);
+ 
+                         
+                                 
+              estatuto.executeUpdate("UPDATE Pasajeros SET  Nombre = '"+nuevo+"' WHERE Identificacion = '"+entrada+"'");
             JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
-         
+            this.cargartabla1();
                          }
                   
                          
                               if(t.equals(opciones[1])){
                                  estatuto = f.s.createStatement();
-              estatuto.executeUpdate("UPDATE Pasajeros SET  id_carrera = '"+this.apellido.getText()+"' WHERE id_asignatura = "+"");
+                                                             
+ String nuevo=JOptionPane.showInputDialog(null, "Por favor introduzca el nuevo dato", JOptionPane.MESSAGE_PROPERTY);
+ 
+                         
+               estatuto.executeUpdate("UPDATE Pasajeros SET  Apellido = '"+nuevo+"' WHERE Identificacion = '"+entrada+"'");
             JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
-           
+              this.cargartabla1();
                          
                          }
                          
                          
                                 if(t.equals(opciones[2])){
                                  estatuto = f.s.createStatement();
-              estatuto.executeUpdate("UPDATE Pasajeros SET  Id_Vuelo = '"+this.numerovuelo.getText()+"' WHERE id_asignatura = "+"");
+                                                             
+ String nuevo=JOptionPane.showInputDialog(null, "Por favor introduzca el nuevo dato", JOptionPane.MESSAGE_PROPERTY);
+ 
+                         
+               estatuto.executeUpdate("UPDATE Pasajeros SET  Id_Vuelo = '"+nuevo+"' WHERE Identificacion = '"+entrada+"'");
             JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
-         
+            this.cargartabla1();
                          
                          }
                          
                                        if(t.equals(opciones[3])){
                                  estatuto = f.s.createStatement();
-              estatuto.executeUpdate("UPDATE asignatura SET  unidad_credito = '"+this.numerovuelo.getText()+"' WHERE id_asignatura = "+"");
+                                                             
+ String nuevo=JOptionPane.showInputDialog(null, "Por favor introduzca el nuevo dato", JOptionPane.MESSAGE_PROPERTY);
+ 
+                         
+                estatuto.executeUpdate("UPDATE Pasajeros SET  Fecha_De_Nacimiento = '"+nuevo+"' WHERE Identificacion = '"+entrada+"'");
             JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
-         
+            this.cargartabla1();
                          
                          }
                           
@@ -1013,44 +1048,59 @@ this.trasfondo.repaint();
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
 try {
-           
+           String entrada;
+     entrada = JOptionPane.showInputDialog(null,"Por favor introduzca el numero de vuelo al cual se le quiere editar los datos",JOptionPane.MESSAGE_PROPERTY);
+                         
             
              //falta mejorarlo pero ya se  tiene una estructura
                 
                          
                       String opciones[]={"Fecha y Hora","Origen","Destino"};
            
- String t=(String) JOptionPane.showInputDialog(null, "Por favor seleccione el campo que quiere actualizar del registro:"+this.identificacion.getText(), "Actualizar", JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
+ String t=(String) JOptionPane.showInputDialog(null, "Por favor seleccione el campo que quiere actualizar:", "Actualizar", JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
    
-                         
+
+                           
                          
                          if(t.equals(JOptionPane.CANCEL_OPTION)){
                          
                          }
                          
                          else{
+                             
+                             //FECHA Y HORA
                          if(t.equals(opciones[0])){
                                  estatuto = f.s.createStatement();
-              estatuto.executeUpdate("UPDATE Pasajeros SET  NOmbre = '"+this.nombre.getText()+"' WHERE id_asignatura = "+"s");
+                                                               
+ String nuevo=JOptionPane.showInputDialog(null, "Por favor introduzca el nuevo dato", JOptionPane.MESSAGE_PROPERTY);
+ 
+              estatuto.executeUpdate("UPDATE Vuelos_Avion SET  Fecha_De_Vuelo = '"+nuevo+"' WHERE Numero_Vuelo = '"+entrada+"'");
             JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
-         
+            this.cargartabla2();
                          }
                   
-                         
+                         //ORIGEN
                               if(t.equals(opciones[1])){
                                  estatuto = f.s.createStatement();
-              estatuto.executeUpdate("UPDATE Pasajeros SET  id_carrera = '"+this.apellido.getText()+"' WHERE id_asignatura = "+"");
+                                                               
+ String nuevo=JOptionPane.showInputDialog(null, "Por favor introduzca el nuevo dato", JOptionPane.MESSAGE_PROPERTY);
+ 
+             estatuto.executeUpdate("UPDATE Vuelos_Avion SET  Origen_Areopuerto = '"+nuevo+"' WHERE Numero_Vuelo = '"+entrada+"'");
             JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
            
-                         
+                           this.cargartabla2(); 
                          }
                          
-                         
+                         //DESTINO
                                 if(t.equals(opciones[2])){
                                  estatuto = f.s.createStatement();
-              estatuto.executeUpdate("UPDATE Pasajeros SET  Id_Vuelo = '"+this.numerovuelo.getText()+"' WHERE id_asignatura = "+"");
+                                                               
+ String nuevo=JOptionPane.showInputDialog(null, "Por favor introduzca el nuevo dato", JOptionPane.MESSAGE_PROPERTY);
+ 
+                      estatuto.executeUpdate("UPDATE Vuelos_Avion SET  Destino_Areopuerto = '"+nuevo+"' WHERE Numero_Vuelo = '"+entrada+"'");
+
             JOptionPane.showMessageDialog(this,"REGISTRO ACTUALIZADO EXITOSAMENTE");
-         
+            this.cargartabla2();
                          
                          }
                          
@@ -1105,11 +1155,15 @@ try {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido;
+    private javax.swing.JSpinner año;
     private javax.swing.JProgressBar barra;
     private javax.swing.JButton bpasajero;
-    private javax.swing.JTextField fecha;
+    private javax.swing.JSpinner dia;
     private javax.swing.JTextField identificacion;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1130,12 +1184,13 @@ try {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner mes;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField numerovuelo;
     private javax.swing.JPanel panelregistrarpasajero;
     private javax.swing.JPanel principal;
     private javax.swing.JLabel tablaactual;
-    private javax.swing.JTable tablaglobal;
+    protected javax.swing.JTable tablaglobal;
     private javax.swing.JPanel trasfondo;
     // End of variables declaration//GEN-END:variables
 }

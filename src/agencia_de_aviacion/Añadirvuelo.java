@@ -39,6 +39,11 @@ public class Añadirvuelo extends javax.swing.JPanel {
             f.conectorBD();
     }
 
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,11 +57,18 @@ public class Añadirvuelo extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        fh = new javax.swing.JTextField();
         destino = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         numerov = new javax.swing.JTextField();
+        año = new javax.swing.JSpinner();
+        mes = new javax.swing.JSpinner();
+        dia = new javax.swing.JSpinner();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        hora = new javax.swing.JSpinner();
+        jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 102, 255));
         setPreferredSize(new java.awt.Dimension(312, 340));
@@ -68,7 +80,7 @@ public class Añadirvuelo extends javax.swing.JPanel {
                 origenActionPerformed(evt);
             }
         });
-        add(origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 121, -1));
+        add(origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 121, -1));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -78,7 +90,7 @@ public class Añadirvuelo extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Destino");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 176, 19));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 176, 19));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,19 +103,12 @@ public class Añadirvuelo extends javax.swing.JPanel {
         });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 262, -1, 40));
 
-        fh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fhActionPerformed(evt);
-            }
-        });
-        add(fh, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 160, 30));
-
         destino.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BLA", "BRM", "BNS", "CBL", "CCS", "CUM", "VIG", "LFR", "LSP", "LRV", "MAR", "MUN", "MYC", "PMV", "PBL", "PHV", "PZO", "SFD", "SOM", "STD", "TUV", "VLN" }));
-        add(destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 121, -1));
+        add(destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 121, -1));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Origen");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -112,21 +117,42 @@ public class Añadirvuelo extends javax.swing.JPanel {
 
         numerov.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         add(numerov, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 160, 30));
+
+        año.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(2019), Integer.valueOf(2019), null, Integer.valueOf(1)));
+        add(año, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 70, -1));
+
+        mes.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
+        add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
+
+        dia.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+        add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
+
+        jLabel5.setText("Año");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 20));
+
+        jLabel6.setText("Mes");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, 20));
+
+        jLabel7.setText("Dia");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, 20));
+
+        hora.setModel(new javax.swing.SpinnerNumberModel(1, 1, 24, 1));
+        add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
+
+        jLabel8.setText("Hora");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, 20));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fhActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fhActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      try {
-          
+     
           Interfaz nd=new Interfaz(1);
           
+        try {
+         
         
             estatuto = f.s.createStatement();
             String dato1=this.numerov.getText();
-            String dato2=fh.getText();
+            String dato2=""+this.año.getValue()+"-"+this.mes.getValue()+"-"+this.dia.getValue()+"/"+this.hora.getValue();
             String dato3=(String) this.origen.getSelectedItem();
 //             String dato4=(String) this.fecha.getValue();
          String dato4=(String) this.destino.getSelectedItem();
@@ -135,8 +161,10 @@ public class Añadirvuelo extends javax.swing.JPanel {
            //String Datoss="('identiifcacion, 'franco', 'angel', '03-11-99', '5');";
            
             estatuto.executeUpdate("INSERT INTO Vuelos_Avion VALUES ('"+dato1+"','"+dato2+"','"+dato3+"','"+dato4+"')");
+           
+               
             JOptionPane.showMessageDialog(this,"DATOS REGISTRADOS EXITOSAMENTE");
-            nd.cargartabla2();
+           nd.cargartabla1();
       
         } catch (SQLException ex) {
             
@@ -144,7 +172,7 @@ public class Añadirvuelo extends javax.swing.JPanel {
             
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }      
-        
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void origenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_origenActionPerformed
@@ -153,13 +181,20 @@ public class Añadirvuelo extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner año;
     public javax.swing.JComboBox destino;
-    public javax.swing.JTextField fh;
+    private javax.swing.JSpinner dia;
+    private javax.swing.JSpinner hora;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JSpinner mes;
     private javax.swing.JTextField numerov;
     public javax.swing.JComboBox origen;
     // End of variables declaration//GEN-END:variables
