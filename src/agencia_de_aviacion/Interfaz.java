@@ -51,10 +51,11 @@ public class Interfaz extends javax.swing.JFrame {
                  cargartabla1();
                    cargartabla2();
                      cargartabla3();
+                     cargartablav();
                  System.out.println("Se ejecuto");
              }
          };
-         d.schedule(j, 0, 30000);
+         d.schedule(j, 0, 60000);
        
         
         
@@ -125,6 +126,39 @@ public class Interfaz extends javax.swing.JFrame {
     
     
     }
+      
+      
+      public void cargartablav(){
+    
+      String [] titulos = { "Numero De Vuelo","Fecha De Vuelo","Origen","Destino"};
+        DefaultTableModel md = new DefaultTableModel(null,titulos);
+        String [] registro = new String[4];
+        
+        try {
+            Statement a1 = f.s.createStatement();
+            ResultSet r = a1.executeQuery("SELECT * FROM Vuelos_Avion");
+            
+            while(r.next()){
+               registro[0] = r.getString("Numero_Vuelo");
+               registro[1] = r.getString("Fecha_De_Vuelo");
+                registro[2] = r.getString("Origen_Areopuerto");
+               registro[3] = r.getString("Destino_Areopuerto");
+            
+               md.addRow(registro);
+            }
+            
+            this.tablavuelos.setModel(md);
+        } catch (SQLException ex) {
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    
+    
+    }
+      
+      
+      
     
       
         private void cargartabla3(){
@@ -175,7 +209,11 @@ public class Interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        principal = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaglobal = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablavuelos = new javax.swing.JTable();
+        barra = new javax.swing.JProgressBar();
         trasfondo = new javax.swing.JPanel();
         panelregistrarpasajero = new javax.swing.JPanel();
         identificacion = new javax.swing.JTextField();
@@ -194,17 +232,14 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaglobal = new javax.swing.JTable();
-        barra = new javax.swing.JProgressBar();
+        jLabel4 = new javax.swing.JLabel();
         tablaactual = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -214,12 +249,50 @@ public class Interfaz extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        principal.setBackground(new java.awt.Color(51, 51, 51));
+        tablaglobal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaglobal);
 
-        trasfondo.setBackground(new java.awt.Color(51, 51, 51));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 710, 230));
+
+        tablavuelos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablavuelos);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 460, 310));
+
+        barra.setBackground(new java.awt.Color(153, 153, 153));
+        barra.setForeground(new java.awt.Color(0, 102, 255));
+        barra.setBorder(null);
+        barra.setBorderPainted(false);
+        getContentPane().add(barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 650, 640, 20));
+
+        trasfondo.setBackground(new java.awt.Color(0, 102, 255));
         trasfondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelregistrarpasajero.setBackground(new java.awt.Color(0, 102, 255));
@@ -295,85 +368,29 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel3.setText("Dia");
         panelregistrarpasajero.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/giphy.gif"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        panelregistrarpasajero.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 310, 860, 340));
+
         trasfondo.add(panelregistrarpasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 298, 310));
 
-        tablaglobal.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tablaglobal);
+        getContentPane().add(trasfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 300, 310));
 
-        barra.setBackground(new java.awt.Color(51, 51, 51));
-        barra.setForeground(new java.awt.Color(0, 102, 255));
-        barra.setBorder(null);
-        barra.setBorderPainted(false);
-
-        tablaactual.setForeground(new java.awt.Color(0, 102, 255));
+        tablaactual.setBackground(new java.awt.Color(51, 51, 51));
+        tablaactual.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        tablaactual.setForeground(new java.awt.Color(0, 0, 0));
         tablaactual.setText("Tabla");
+        getContentPane().add(tablaactual, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 110, 27));
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 102));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/f.jpg"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 680));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout principalLayout = new javax.swing.GroupLayout(principal);
-        principal.setLayout(principalLayout);
-        principalLayout.setHorizontalGroup(
-            principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(principalLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
-                        .addComponent(tablaactual, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(444, 444, 444))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalLayout.createSequentialGroup()
-                        .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 859, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28))
-                    .addGroup(principalLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(trasfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-        principalLayout.setVerticalGroup(
-            principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(principalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(trasfondo, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tablaactual, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-        );
-
-        jMenuBar1.setBackground(new java.awt.Color(51, 51, 51));
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255), 2));
         jMenuBar1.setBorderPainted(false);
 
-        jMenu1.setForeground(new java.awt.Color(0, 153, 255));
+        jMenu1.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/forma-del-usuario.png"))); // NOI18N
         jMenu1.setText("Registrar Pasajero");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -382,7 +399,8 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setForeground(new java.awt.Color(0, 153, 255));
+        jMenu2.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salidas-vuelos.png"))); // NOI18N
         jMenu2.setText("Registrar Vuelo");
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -391,7 +409,8 @@ public class Interfaz extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setForeground(new java.awt.Color(0, 153, 204));
+        jMenu3.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informacion.png"))); // NOI18N
         jMenu3.setText("Consultar Informacion");
 
         jMenuItem1.setText("Pasajeros");
@@ -401,14 +420,6 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem1);
-
-        jMenuItem2.setText("Vuelos");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem2);
 
         jMenuItem3.setText("Aviones");
         jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -441,7 +452,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setForeground(new java.awt.Color(0, 153, 204));
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/goma-de-borrar(2).png"))); // NOI18N
         jMenu4.setText("Eliminar");
 
         jMenuItem4.setText("Pasajero");
@@ -462,7 +473,8 @@ public class Interfaz extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setForeground(new java.awt.Color(0, 204, 255));
+        jMenu5.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar-boton-de-flecha-de-pagina.png"))); // NOI18N
         jMenu5.setText("Actualizar");
 
         jMenuItem8.setText("Pasajero");
@@ -483,18 +495,17 @@ public class Interfaz extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        setJMenuBar(jMenuBar1);
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logout.png"))); // NOI18N
+        jMenu6.setText("Salir");
+        jMenu6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu6);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -644,81 +655,6 @@ this.trasfondo.repaint();
           // TODO add your handling code here:
     }//GEN-LAST:event_bpasajeroActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-
-       
-          Thread 
-     tiempo = new Thread(){
-         
-         @Override
-         public void run(){
-         
-         
-         int seg;
-         
-         for(seg=1;seg<=100;seg++){
-         
-         
-        barra.setValue(seg);
-         
-        if(seg==100){
-        
-          
-          tablaactual.setText("Vuelos");
-       
-        String [] titulos = { "Numero De Vuelo","Fecha De Vuelo","Origen","Destino"};
-        DefaultTableModel md = new DefaultTableModel(null,titulos);
-        String [] registro = new String[4];
-        
-        try {
-            Statement a1 = f.s.createStatement();
-            ResultSet r = a1.executeQuery("SELECT * FROM Vuelos_Avion");
-            
-            while(r.next()){
-               registro[0] = r.getString("Numero_Vuelo");
-               registro[1] = r.getString("Fecha_De_Vuelo");
-                registro[2] = r.getString("Origen_Areopuerto");
-               registro[3] = r.getString("Destino_Areopuerto");
-            
-               md.addRow(registro);
-            }
-            
-            tablaglobal.setModel(md);
-        } catch (SQLException ex) {
-            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
-        }
-        
-        
-        
-             try {
-                 Thread.sleep(13);
-                 
-                 
-                
-             } catch (InterruptedException ex) {
-                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-             }
-       
-         }
-          seg=0;
-                barra.setValue(seg);
-         }
-          
-     };
-    
-      tiempo.start();
-        
-        
-        
-        
-        
-         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
  try {
               Statement m=s.createStatement();
@@ -770,7 +706,7 @@ this.trasfondo.repaint();
             estatuto = f.s.createStatement();
             estatuto.executeUpdate("DELETE FROM Vuelos_Avion where Numero_Vuelo="+"'"+Identificacion+"';");
             JOptionPane.showMessageDialog(this,"REGISTRO ELIMINADO EXITOSAMENTE");
-          this.cargartabla2();
+          this.cargartablav();
         } catch (SQLException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }            // TODO add your handling code here:
@@ -1136,6 +1072,10 @@ try {
    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+System.exit(WIDTH);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu6MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1182,6 +1122,8 @@ try {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1191,9 +1133,9 @@ try {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -1201,15 +1143,15 @@ try {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner mes;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField numerovuelo;
     private javax.swing.JPanel panelregistrarpasajero;
-    private javax.swing.JPanel principal;
     private javax.swing.JLabel tablaactual;
     protected javax.swing.JTable tablaglobal;
+    private javax.swing.JTable tablavuelos;
     private javax.swing.JPanel trasfondo;
     // End of variables declaration//GEN-END:variables
 }

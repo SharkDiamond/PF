@@ -173,7 +173,7 @@ public class Añadirvuelo extends javax.swing.JPanel {
            
                
             JOptionPane.showMessageDialog(this,"DATOS REGISTRADOS EXITOSAMENTE");
-           nd.cargartabla1();
+           nd.cargartablav();
       
         } catch (SQLException ex) {
             

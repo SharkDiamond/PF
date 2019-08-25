@@ -17,8 +17,40 @@ public class Agencia_De_Aviacion {
     public static void main(String[] args) {
         
         
-        Interfaz inter=new Interfaz("Mostrar");
         
+        carga a=new carga();
+        
+        
+        a.setVisible(true);
+       
+        a.setLocationRelativeTo(null);
+            
+         for(int i=0;i<100; i++){
+         
+         a.bcarga.setValue(i);
+         
+         try{
+         
+         Thread.sleep(100);
+         
+         } catch(Exception e){
+         
+         
+         
+         }
+    
+         
+         
+             
+         }
+     
+        
+            a.dispose();
+         Interfaz m =new Interfaz("Mostrar");
+       
+      
+         
+         
       
     }
     
