@@ -15,6 +15,12 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -250,6 +256,10 @@ public class Interfaz extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -269,7 +279,7 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaglobal);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 710, 230));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 790, 230));
 
         tablavuelos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -284,13 +294,13 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablavuelos);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 460, 310));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 460, 310));
 
         barra.setBackground(new java.awt.Color(153, 153, 153));
         barra.setForeground(new java.awt.Color(0, 102, 255));
         barra.setBorder(null);
         barra.setBorderPainted(false);
-        getContentPane().add(barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 650, 640, 20));
+        getContentPane().add(barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 650, 640, 20));
 
         trasfondo.setBackground(new java.awt.Color(0, 102, 255));
         trasfondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -372,18 +382,18 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
         panelregistrarpasajero.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 310, 860, 340));
 
-        trasfondo.add(panelregistrarpasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 298, 310));
+        trasfondo.add(panelregistrarpasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 310));
 
-        getContentPane().add(trasfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 300, 310));
+        getContentPane().add(trasfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 280, 310));
 
         tablaactual.setBackground(new java.awt.Color(51, 51, 51));
         tablaactual.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         tablaactual.setForeground(new java.awt.Color(0, 0, 0));
         tablaactual.setText("Tabla");
-        getContentPane().add(tablaactual, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 110, 27));
+        getContentPane().add(tablaactual, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 110, 27));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/f.jpg"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 680));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 680));
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 255), 2));
@@ -495,15 +505,49 @@ public class Interfaz extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logout.png"))); // NOI18N
-        jMenu6.setText("Salir");
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/periodico.png"))); // NOI18N
+        jMenu6.setText("Reportes");
         jMenu6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu6MouseClicked(evt);
             }
         });
+
+        jMenuItem2.setText("Pasajeros");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem2);
+
+        jMenuItem10.setText("Vuelos");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem10);
+
+        jMenuItem11.setText("Areopuertos");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem11);
+
         jMenuBar1.add(jMenu6);
+
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logout.png"))); // NOI18N
+        jMenu7.setText("Salir");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -1073,8 +1117,89 @@ try {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
-System.exit(WIDTH);        // TODO add your handling code here:
+       // TODO add your handling code here:
     }//GEN-LAST:event_jMenu6MouseClicked
+
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+System.exit(WIDTH);       // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+Connection a=f.getS();
+
+String path="/home/gabriel/NetBeansProjects/Agencia_De_Aviacion/src/Reporte/Pasajeros.jasper";
+
+JasperReport reporte;
+
+
+     try {
+         reporte=(JasperReport) JRLoader.loadObjectFromFile(path);
+         
+         
+         JasperPrint jprint=JasperFillManager.fillReport(path,null,a);
+         JasperViewer viewer =new JasperViewer(jprint,false);
+         
+         viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+         
+         viewer.setVisible(true);
+     } catch (JRException ex) {
+         Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+     }
+
+
+
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+Connection a=f.getS();
+
+String path="/home/gabriel/NetBeansProjects/Agencia_De_Aviacion/src/Reporte/Vuelos.jasper";
+
+JasperReport reporte;
+
+
+     try {
+         reporte=(JasperReport) JRLoader.loadObjectFromFile(path);
+         
+         
+         JasperPrint jprint=JasperFillManager.fillReport(path,null,a);
+         JasperViewer viewer =new JasperViewer(jprint,false);
+         
+         viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+         
+         viewer.setVisible(true);
+     } catch (JRException ex) {
+         Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+     }
+
+
+      
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+Connection a=f.getS();
+
+String path="/home/gabriel/NetBeansProjects/Agencia_De_Aviacion/src/Reporte/Areopuertos.jasper";
+
+JasperReport reporte;
+
+
+     try {
+         reporte=(JasperReport) JRLoader.loadObjectFromFile(path);
+         
+         
+         JasperPrint jprint=JasperFillManager.fillReport(path,null,a);
+         JasperViewer viewer =new JasperViewer(jprint,false);
+         
+         viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+         
+         viewer.setVisible(true);
+     } catch (JRException ex) {
+         Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1134,8 +1259,12 @@ System.exit(WIDTH);        // TODO add your handling code here:
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

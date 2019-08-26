@@ -5,6 +5,7 @@
  */
 package agencia_de_aviacion;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.sql.Statement;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
@@ -20,9 +22,8 @@ import java.util.logging.Logger;
  */
 public class  Fuente {
     
-    
-         public Connection s=null;
-    
+    Connection s=null;
+         
     protected void conectorBD(){
     
      
@@ -48,38 +49,21 @@ public class  Fuente {
     }
     
     
-   Object sa;
     
+        public Connection getS() {
+        return s;
+    
+        
+        
+        }
+    
+        
+        
+    
+    
+        
+        
   
-    public void Setencia(String Sentencia_sql, Object metodo){
-    
-    
-          try {
-              Statement m=s.createStatement();
-              
-              
-              
-              ResultSet a=m.executeQuery(Sentencia_sql);
-              
-              
-              while(a.next()){
-              
-         
-                  this.sa=metodo;
-                 
-              
-              }
-              
-              
-          } catch (SQLException ex) {
-              Logger.getLogger(Fuente.class.getName()).log(Level.SEVERE, null, ex);
-          }
-    
-    
-    }
-    
-    
-    
     
     
     
