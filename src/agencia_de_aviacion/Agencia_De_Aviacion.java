@@ -46,9 +46,7 @@ public class Agencia_De_Aviacion {
      
         
             a.dispose();
-         Interfaz m =new Interfaz("Mostrar");
-       
-      
+     usuarioFormulario formulario=new usuarioFormulario();
          
          
       

@@ -97,10 +97,7 @@ public class Interfaz extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    
-    
-    
+     
     
     }
     
